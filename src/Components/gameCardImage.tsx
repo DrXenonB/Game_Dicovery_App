@@ -1,4 +1,4 @@
-import { Box, Tag, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { Game } from "../Hooks/useGames";
 import getCroppedImageURL from "../Services/image-url";
 
@@ -9,10 +9,10 @@ interface Props {
 const GameCardImage = ({ game }: Props) => {
   const position = game.rating_top;
 
-  const tag = position !== 0 && (
-    <Tag position="absolute" top={0} right={0} variant="solid">
-      #{game.rating_top}
-    </Tag>
+  const starRating = position !== 0 && (
+    <Box position="absolute" top={0} right={0} color="yellow.300" fontSize={12}>
+      {"★".repeat(game.rating_top)}
+    </Box>
   );
 
   return (
@@ -21,7 +21,7 @@ const GameCardImage = ({ game }: Props) => {
         src={getCroppedImageURL(game.background_image)}
         position="relative"
       />
-      {tag}
+      {starRating}
     </Box>
   );
 };
