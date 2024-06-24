@@ -6,16 +6,24 @@ interface Props {
   game: Game;
 }
 
-const GameCardImage = ({ game }: Props) => (
-  <Box position="relative">
-    <Image
-      src={getCroppedImageURL(game.background_image)}
-      position="relative"
-    />
+const GameCardImage = ({ game }: Props) => {
+  const position = game.rating_top;
+
+  const tag = position !== 0 && (
     <Tag position="absolute" top={0} right={0} variant="solid">
       #{game.rating_top}
     </Tag>
-  </Box>
-);
+  );
+
+  return (
+    <Box position="relative">
+      <Image
+        src={getCroppedImageURL(game.background_image)}
+        position="relative"
+      />
+      {tag}
+    </Box>
+  );
+};
 
 export default GameCardImage;
